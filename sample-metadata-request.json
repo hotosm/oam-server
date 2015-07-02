@@ -1,0 +1,18 @@
+{
+  "images" : [
+    "s3://bucket1.hotosm.org/image1.tif",
+    "s3://bucket2.hotosm.org/image1.tif",
+    "s3://bucket3.hotosm.org/image1.tif"
+  ],
+  "metadata" : {
+    "platform" : "satellite",
+    "provider" : "some satellite company",
+    "contact" : "someone@satellitecompany.com",
+    "properties": {
+      "thumbnail": "link to thumbnail if available",
+      "tms": "link to TMS if available",
+      "sensor": "name of satellite"
+    }
+  },
+  "callback_url": "http://beta.openaerialmap.org/callback"
+}
