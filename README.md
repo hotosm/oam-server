@@ -4,15 +4,26 @@
 
 ### Setup
 
+In `server` directory
+
 - `$ npm install`
+
+or, if building the docker image,
+
+`$ docker build -t oam/server .`
 
 ### Usage
 
+In `server` directory
+
 `$ npm start`
+
+or, if running in a docker container,
+
+`$ docker run -p 8000:8000 -i -t oam/server npm start`
 
 ### Test
 
 After server is started,
 
 `$ node test.js`
-

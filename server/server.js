@@ -16,7 +16,7 @@ app.get('/', function(req, res) {
   res.send("pong");
 });
 
-app.post("/metadata", function(req, res){
+app.post("/tile", function(req, res){
   console.log(req.body);
   return res.json(req.body);
 });
