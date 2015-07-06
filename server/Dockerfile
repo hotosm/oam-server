@@ -15,4 +15,10 @@ RUN \
 ADD . /app/
 
 VOLUME ["/app"]
+
 EXPOSE 8000
+
+ENV PORT 8000
+
+CMD npm start
+
