@@ -2,29 +2,34 @@
   "name": "oam-server",
   "version": "0.1.0",
   "description": "OAM Server endpoints",
-  "main": "index.js",
+  "main": "server.js",
   "author": "Rob Emanuele <rdemanuele@gmail.com>",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/hotosm/oam-server.git"
   },
-  "main": "server.js",
   "scripts": {
-    "start": "node index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "async": "^1.3.0",
+    "bluebird": "^2.9.13",
     "body-parser": "^1.13.1",
     "express": "^4.13.0",
+    "mkdirp": "^0.5.1",
     "morgan": "^1.6.0",
-    "request": "^2.58.0"
+    "range": "0.0.3",
+    "request": "^2.58.0",
+    "rimraf": "^2.4.1",
+    "sphericalmercator": "^1.0.3",
+    "tessera": "^0.5.3",
+    "tilelive-file": "0.0.3",
+    "tmp": "0.0.26"
   },
   "bugs": {
     "url": "https://github.com/hotosm/oam-server/issues"
   },
   "homepage": "https://github.com/hotosm/oam-server",
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  }
+  "devDependencies": {}
 }
