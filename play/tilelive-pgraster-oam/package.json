@@ -1,0 +1,14 @@
+{
+  "name": "tilelive-pgraster-oam",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "debug": "^2.2.0",
+    "mapnik": "^3.4.0",
+    "pg": "^4.4.0",
+    "pg-escape": "^0.1.0",
+    "sphericalmercator": "^1.0.3"
+  }
+}
