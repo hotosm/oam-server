@@ -3,8 +3,10 @@
 var url = require("url"),
     util = require("util");
 
-var debug = require("debug")("tilelive-pgraster-oam"),
+var async = require("async"),
+    debug = require("debug")("tilelive-pgraster-oam"),
     escape = require("pg-escape"),
+    holdtime = require("holdtime"),
     mapnik = require("mapnik"),
     merc = new (require("sphericalmercator"))(),
     pg = require("pg");
@@ -37,19 +39,22 @@ module.exports = function(tilelive) {
 
       var query = escape(
         [
-          "SELECT DISTINCT ON (image) image,",
+          "SELECT DISTINCT ON (zoom) zoom,",
           "  zoom,",
-          "  ST_Width(ST_Clip(%I, ST_SetSRID($1::box2d, 3857))) width,",
-          "  ST_Height(ST_Clip(%I, ST_SetSRID($1::box2d, 3857))) height,",
-          "  ST_AsPNG(ST_Clip(%I, ST_SetSRID($1::box2d, 3857))) png",
+          // "  ST_Width(ST_Clip(ST_Union(%I), ST_SetSRID($1::box2d, 3857))) width,",
+          // "  ST_Height(ST_Clip(ST_Union(%I), ST_SetSRID($1::box2d, 3857))) height,",
+          // "  ST_AsPNG(ST_Clip(ST_Union(%I), ST_SetSRID($1::box2d, 3857))) png",
+          "  ST_AsPNG(ST_Union(ST_Clip(%I, ST_SetSRID($1::box2d, 3857)))) png",
           "FROM %I",
           "WHERE image = $2",
           "  AND zoom <= $3",
           "  AND %I && $1::box2d",
-          "  ORDER BY image, zoom DESC"
+          "GROUP BY zoom",
+          "ORDER BY zoom DESC",
+          "LIMIT 1"
         ].join("\n"),
-        column,
-        column,
+        // column,
+        // column,
         column,
         table,
         column
@@ -61,7 +66,8 @@ module.exports = function(tilelive) {
                             image,
                             z
                           ],
-                          function(err, result) {
+                          holdtime(function(err, result, elapsedMS) {
+        console.log("query took %dms", elapsedMS);
         done();
 
         if (err) {
@@ -72,33 +78,69 @@ module.exports = function(tilelive) {
           return callback(new Error("Tile does not exist"));
         }
 
-        if (result.rows.length > 1) {
-          return callback(new Error("Too many rows returned."));
-        }
+        // if (result.rows.length > 1) {
+        //   return callback(new Error("Too many rows returned."));
+        // }
 
         debug("zoom:", result.rows[0].zoom);
         debug("width:", result.rows[0].width);
         debug("height:", result.rows[0].height);
 
-        return mapnik.Image.fromBytes(result.rows[0].png, function(err, im) {
+        console.log(result.rows.length);
+        console.log(result.rows.map(function(x) { return x.width; }));
+
+        return callback(null, result.rows[0].png, {
+          "Content-Type": "image/png"
+        });
+
+        return async.map(result.rows.map(function(row) { return row.png; }), async.apply(mapnik.Image.fromBytes), function(err, images) {
           if (err) {
             return callback(err);
           }
 
-          // we're getting a 257x257 image back, so let's window it
-          var view = im.view(1, 0, 257, 256);
+          return async.reduce(images, new mapnik.Image(256, 256, {
+            premultiplied: true
+          }), function(im1, im2, done) {
+            return im2.premultiply(function(err) {
+              if (err) {
+                return callback(err);
+              }
 
-          return view.encode(function(err, png) {
-            if (err) {
-              return callback(err);
-            }
+              return im1.composite(im2, done);
+            });
+          }, function(err, im) {
+            return im.encode("png", function(err, buf) {
+              if (err) {
+                return callback(err);
+              }
 
-            return callback(null, png, {
-              "Content-Type": "image/png"
+              return callback(null, buf, {
+                "Content-Type": "image/png"
+              });
             });
           });
         });
-      });
+
+
+        // return mapnik.Image.fromBytes(result.rows[0].png, function(err, im) {
+        //   if (err) {
+        //     return callback(err);
+        //   }
+        //
+        //   // we're getting a 257x257 image back, so let's window it
+        //   var view = im.view(1, 0, 257, 256);
+        //
+        //   return view.encode(function(err, png) {
+        //     if (err) {
+        //       return callback(err);
+        //     }
+        //
+        //     return callback(null, png, {
+        //       "Content-Type": "image/png"
+        //     });
+        //   });
+        // });
+      }));
     });
   };
 
