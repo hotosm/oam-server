@@ -2,7 +2,6 @@
   "name": "oam-server",
   "version": "0.1.0",
   "description": "OAM Server endpoints",
-  "main": "index.js",
   "author": "Rob Emanuele <rdemanuele@gmail.com>",
   "license": "Apache-2.0",
   "repository": {
@@ -23,8 +22,5 @@
     "url": "https://github.com/hotosm/oam-server/issues"
   },
   "homepage": "https://github.com/hotosm/oam-server",
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  }
+  "devDependencies": {}
 }
