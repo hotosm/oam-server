@@ -10,9 +10,7 @@ start: server
 		--detach \
 		--name oam-server \
 		--publish 8000:8000 \
-		--volume $(PWD)/server/package.json:/app/package.json \
-		--volume $(PWD)/server/server.js:$(PWD)/server.js \
-		--volume $(PWD)/server/test.js:$(PWD)/test.js \
+		--volume $(PWD)/server:/app \
 		$(DOCKER_IMAGE) start
 
 test: start
@@ -22,9 +20,7 @@ test: start
 		--rm \
 		--name oam-server-test \
 		--link oam-server:oam-server \
-		--volume $(PWD)/server/package.json:/app/package.json \
-		--volume $(PWD)/server/server.js:$(PWD)/server.js \
-		--volume $(PWD)/server/test.js:$(PWD)/test.js \
+		--volume $(PWD)/server:/app \
 		$(DOCKER_IMAGE) test
 
 	@docker kill oam-server >> /dev/null
