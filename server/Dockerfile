@@ -1,24 +1,27 @@
-FROM node:0.10
+FROM node:0.10-slim
 
-RUN \
-  useradd -d /app -m oam
+MAINTAINER Humanitarian OpenStreetMap Team
 
-USER oam
 ENV HOME /app
-WORKDIR /app
-
-ADD package.json /app/
-
-RUN \
-  npm install
-
-ADD . /app/
-
-VOLUME ["/app"]
-
-EXPOSE 8000
-
 ENV PORT 8000
 
-CMD npm start
+RUN mkdir -p /npm /app
+WORKDIR /npm
 
+COPY package.json /npm/
+
+RUN npm install
+
+RUN useradd \
+  --home-dir /app \
+  --system \
+  --user-group \
+  oam \
+  && chown -R oam:oam /app
+
+USER oam
+WORKDIR /app
+
+COPY . /app/
+
+ENTRYPOINT ["npm"]
