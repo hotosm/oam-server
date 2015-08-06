@@ -1,11 +1,11 @@
 var assert = require("assert"),
-    fs = require("fs"),
     os = require("os"),
     path = require("path"),
     util = require("util");
 
 var async = require("async"),
-    range = require("range"),
+    range = require("range").range,
+    Promise = require("bluebird"),
     Set = require("collections/set"),
     _ = require('underscore');
 
