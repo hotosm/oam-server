@@ -10,7 +10,7 @@ In `server` directory
 
 or, if building the docker image,
 
-`$ docker build -t oam/server .`
+`$ docker build -t openaerialmap/server .`
 
 ### Usage
 
@@ -20,7 +20,7 @@ In `server` directory
 
 or, if running in a docker container,
 
-`$ docker run -p 8000:8000 -i -t oam/server npm start`
+`$ docker run -p 8000:8000 -it openaerialmap/server npm start`
 
 ### Test
 
