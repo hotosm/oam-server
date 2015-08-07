@@ -123,7 +123,7 @@ var tile = function tile(source, zoom, coords, options) {
     //   return this.activity("resampleToPng", "1.0", source, target, resampleOptions);
     // }, {  concurrency: options.concurrency })
     .map(function(coord) {
-      var target = path.join(options.target, zoom + '', coord[0] + '', coord[1] + ".tiff"),
+      var target = path.join(options.workingDir, zoom + '', coord[0] + '', coord[1] + ".tiff"),
           extent = gridCoordToExtent(zoom, coord[0], coord[1]),
           resampleOptions = {
             overwrite : true,
@@ -139,11 +139,9 @@ var tile = function tile(source, zoom, coords, options) {
         .bind(this)
         .then(function(file) {
           var inputPath = file,
-              p = path.parse(file),
-              outputPath = path.join(p.dir, p.name + ".png");
+              outputPath = path.join(options.target, zoom + '', coord[0] + '', coord[1] + ".png");
 
           this.log("Translating %s to %s", inputPath, outputPath);
-
           return this.activity("translate", "1.0", inputPath, outputPath, { outputFormat: "PNG", nodata: 0 })
             .then(function(file) {
               return { coord: coord, file: file};
@@ -188,7 +186,8 @@ var tileBetweenZooms = function tileBetweenZooms(initialVrt, startZoom, endZoom,
 // the mosaic at a certain zoom level if the image's max zoom level is greater than or equal to that
 // zoom level.
 // Parameters:
-//     images   -   Images from which to create the mosaiced tile set.
+//     images   -   Images from which to create the mosaiced tile set. The order in which they are listed
+//                  will be the order in which they are prioritized in the mosaic.
 //     options  -   Options for the tiling:
 //         workingDir   - A local or s3 URI that represents the "working directory",
 //                        which is where things like .tiffs and VRTs will be stored as intermediate data.
@@ -205,6 +204,9 @@ var tileBetweenZooms = function tileBetweenZooms(initialVrt, startZoom, endZoom,
 var tileToPngs = function tileToPngs(images, options) {
   options.concurrency = options.concurrency | os.cpus().length;
   options.vrtThreshold = options.vrtThreshold | 256;
+
+  var prioritizedImages = images.reverse();
+
   return Promise
     .resolve(images)
     .bind(this)
@@ -224,28 +226,27 @@ var tileToPngs = function tileToPngs(images, options) {
       // Get the zoom levels for which we have images.
       var zooms = _.map(imageInfos, function(imageInfo) { return imageInfo.maxZoom; });
 
-      var createZoomsToImages = function() {
+      var createZoomsToCoords = function() {
         var result = {};
 
         // Collapse the image and cell information for each 
         for(var i = 0; i < zooms.length; i += 1) {
           var z = zooms[i],
               infos = grouped[z],
-              zoomResult = { images : [], coords : CoordSet() };
+              coords = CoordSet();
 
           for(var j = 0; j < infos.length; j += 1) {
             var imageInfo = infos[j];
-            zoomResult.images.push(imageInfo.image);
-            zoomResult.coords.addEach(imageInfo.coords);
+            coords.addEach(imageInfo.coords);
           }
 
-          result[z] = zoomResult;
+          result[z] = coords;
         }
 
         return result;
       };
 
-      var zoomsToImages = createZoomsToImages();
+      var zoomsToCoords = createZoomsToCoords();
 
       var sortedZooms = _.sortBy(new Set(zooms).toArray(), function(z) { return -z });
       // Include zoom 1 for sliding window
@@ -254,10 +255,9 @@ var tileToPngs = function tileToPngs(images, options) {
       var zoomRanges = [];
       for(var i = 0; i < sortedZooms.length - 1; i += 1) {
         var z = sortedZooms[i];
-        var zoomRange = { range: [sortedZooms[i], sortedZooms[i + 1]], images : zoomsToImages[z].images, coords : zoomsToImages[z].coords };
+        var zoomRange = { range: [sortedZooms[i], sortedZooms[i + 1]], coords : zoomsToCoords[z] };
         zoomRanges.push(zoomRange);
       }
-
 
       return Promise
         .resolve(zoomRanges)
@@ -267,13 +267,14 @@ var tileToPngs = function tileToPngs(images, options) {
               previousTilingCoords = previousReturn[1],
               z1 = zoomRange.range[0],
               z2 = zoomRange.range[1],
-              newImages = zoomRange.images,
               newCoords = zoomRange.coords,
-              coords = newCoords.addEach(previousTilingCoords).toArray(),
-              initialVrtImages = newImages;
+              coords = newCoords.addEach(previousTilingCoords).toArray();
+
+          var initialVrtImages = [];
           if (previousVrt) {
             initialVrtImages.push(previousVrt);
           }
+          initialVrtImages = initialVrtImages.concat(prioritizedImages);
           
           return Promise
             .bind(this)

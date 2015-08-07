@@ -1,0 +1,17 @@
+{
+  "name": "tiles",
+  "version": "1.0.0",
+  "description": "Dar es Salaam OIN imagery",
+  "main": "index.js",
+  "scripts": {
+    "start": "VRT_SHARED_SOURCE=0 tessera -r tilelive-raster raster+file://./dar.vrt"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mapnik": "https://github.com/mapnik/node-mapnik/tarball/gdal2",
+    "tessera": "^0.5.3",
+    "tilelive-mapnik": "^0.6.16",
+    "tilelive-raster": "^0.2.2"
+  }
+}

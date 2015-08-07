@@ -1,0 +1,15 @@
+data/2015-04-13_borahatward_merged_transparent_mosaic_group1.tif
+data/2015-04-14_hospital_merged_transparent_mosaic_group1.tif
+data/2015-04-15_ubungo_merged_transparent_mosaic_group1.tif
+data/2015-04-17_bugurunni_merged_transparent_mosaic_group1.tif
+data/2015-04-17_makumbusho_merged_nosubprojects_transparent_mosaic_group1.tif
+data/2015-04-17_mburahati_bottomleft.tif
+data/2015-04-17_mburahati_bottomright.tif
+data/2015-04-17_mburahati_topleft.tif
+data/2015-04-17_mburahati_topright.tif
+data/2015-04-17_msasani_merged_transparent_mosaic_group1.tif
+data/2015-04-20_dar_river_merged_transparent_mosaic_group1.tif
+data/2015-04-20_south_ubungo_merged_transparent_mosaic_group1.tif
+data/2015-05-10_ndugumbi_merged_transparent_mosaic_group1.tif
+data/2015-05-20_road_merged_transparent_mosaic_group1.tif
+data/2015-05-20_tandale_merged_transparent_mosaic_group1.tif

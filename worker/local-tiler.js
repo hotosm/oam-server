@@ -70,6 +70,7 @@ var worker = decider({
           return tileToPngs.call(this, images, options);
         })
         .finally(function() {
+          console.log("CLEANING UP TMP DIRECTORY - %s", tmpDirectory);
           return rimraf(tmpDirectory);
         });
     })
@@ -79,7 +80,7 @@ var worker = decider({
 });
 
 worker.start({
-  inputDirectory: "/Users/rob/proj/oam/data/faceoff-reproj",
+  inputDirectory: "/Users/rob/proj/oam/data/postgis-gt-faceoff/raw/",
   outputDirectory: "/Users/rob/proj/oam/data/full-tiler-data/sample-tiled",
   tmpDir: "/Users/rob/tmp/oam-tiler", // For placing the working directory somewhere specific
   reproject: true

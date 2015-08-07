@@ -1,0 +1,500 @@
+<VRTDataset rasterXSize="387894" rasterYSize="239692">
+  <SRS>PROJCS["WGS 84 / UTM zone 37S",GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0],UNIT["degree",0.0174532925199433],AUTHORITY["EPSG","4326"]],PROJECTION["Transverse_Mercator"],PARAMETER["latitude_of_origin",0],PARAMETER["central_meridian",39],PARAMETER["scale_factor",0.9996],PARAMETER["false_easting",500000],PARAMETER["false_northing",10000000],UNIT["metre",1,AUTHORITY["EPSG","9001"]],AUTHORITY["EPSG","32737"]]</SRS>
+  <GeoTransform>  5.1753363563000003e+05,  4.0690000000000004e-02,  0.0000000000000000e+00,  9.2532584564399999e+06,  0.0000000000000000e+00, -4.0690000000000004e-02</GeoTransform>
+  <VRTRasterBand dataType="Byte" band="1">
+    <NoDataValue>-1.00000000000000E+04</NoDataValue>
+    <ColorInterp>Red</ColorInterp>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-13_borahatward_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="50430" RasterYSize="52556" DataType="Byte" BlockXSize="50430" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="50430" ySize="52556" />
+      <DstRect xOff="150608" yOff="108206" xSize="71958" ySize="74991" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-14_hospital_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="37649" RasterYSize="45033" DataType="Byte" BlockXSize="37649" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="37649" ySize="45033" />
+      <DstRect xOff="267966" yOff="114304" xSize="39629" ySize="47401" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-15_ubungo_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="47510" RasterYSize="50670" DataType="Byte" BlockXSize="47510" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="47510" ySize="50670" />
+      <DstRect xOff="138451" yOff="30934" xSize="84033" ySize="89622" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_bugurunni_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="69178" RasterYSize="48475" DataType="Byte" BlockXSize="69178" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="69178" ySize="48475" />
+      <DstRect xOff="189552" yOff="167521" xSize="102993" ySize="72170" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_makumbusho_merged_nosubprojects_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="29144" RasterYSize="42598" DataType="Byte" BlockXSize="29144" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="29144" ySize="42598" />
+      <DstRect xOff="215007" yOff="44282" xSize="38133" ySize="55736" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_mburahati_bottomleft.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="47909" RasterYSize="76216" DataType="Byte" BlockXSize="47909" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="47909" ySize="76216" />
+      <DstRect xOff="205084" yOff="161292" xSize="48439" ySize="77059" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_mburahati_bottomright.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="95818" RasterYSize="76216" DataType="Byte" BlockXSize="95818" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="95818" ySize="76216" />
+      <DstRect xOff="253524" yOff="161292" xSize="96878" ySize="77059" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_mburahati_topleft.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="47909" RasterYSize="38108" DataType="Byte" BlockXSize="47909" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="47909" ySize="38108" />
+      <DstRect xOff="205084" yOff="122762" xSize="48439" ySize="38529" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_mburahati_topright.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="95800" RasterYSize="38108" DataType="Byte" BlockXSize="95800" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="95800" ySize="38108" />
+      <DstRect xOff="253524" yOff="122762" xSize="96859" ySize="38529" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_msasani_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="50773" RasterYSize="54887" DataType="Byte" BlockXSize="50773" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="50773" ySize="54887" />
+      <DstRect xOff="259004" yOff="9496" xSize="51933" ySize="56141" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-20_dar_river_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="57131" RasterYSize="57182" DataType="Byte" BlockXSize="57131" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="57131" ySize="57182" />
+      <DstRect xOff="221261" yOff="0" xSize="57131" ySize="57182" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-20_south_ubungo_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="52969" RasterYSize="59329" DataType="Byte" BlockXSize="52969" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="52969" ySize="59329" />
+      <DstRect xOff="122861" yOff="76198" xSize="62928" ySize="70483" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-05-10_ndugumbi_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="38846" RasterYSize="34434" DataType="Byte" BlockXSize="38846" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="38846" ySize="34434" />
+      <DstRect xOff="243377" yOff="109457" xSize="40622" ySize="36008" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-05-20_road_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="294192" RasterYSize="94365" DataType="Byte" BlockXSize="294192" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="294192" ySize="94365" />
+      <DstRect xOff="0" yOff="54997" xSize="387894" ySize="124421" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-05-20_tandale_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="44870" RasterYSize="42558" DataType="Byte" BlockXSize="44870" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="44870" ySize="42558" />
+      <DstRect xOff="198007" yOff="84232" xSize="55930" ySize="53048" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+  </VRTRasterBand>
+  <VRTRasterBand dataType="Byte" band="2">
+    <NoDataValue>-1.00000000000000E+04</NoDataValue>
+    <ColorInterp>Green</ColorInterp>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-13_borahatward_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>2</SourceBand>
+      <SourceProperties RasterXSize="50430" RasterYSize="52556" DataType="Byte" BlockXSize="50430" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="50430" ySize="52556" />
+      <DstRect xOff="150608" yOff="108206" xSize="71958" ySize="74991" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-14_hospital_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>2</SourceBand>
+      <SourceProperties RasterXSize="37649" RasterYSize="45033" DataType="Byte" BlockXSize="37649" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="37649" ySize="45033" />
+      <DstRect xOff="267966" yOff="114304" xSize="39629" ySize="47401" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-15_ubungo_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>2</SourceBand>
+      <SourceProperties RasterXSize="47510" RasterYSize="50670" DataType="Byte" BlockXSize="47510" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="47510" ySize="50670" />
+      <DstRect xOff="138451" yOff="30934" xSize="84033" ySize="89622" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_bugurunni_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>2</SourceBand>
+      <SourceProperties RasterXSize="69178" RasterYSize="48475" DataType="Byte" BlockXSize="69178" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="69178" ySize="48475" />
+      <DstRect xOff="189552" yOff="167521" xSize="102993" ySize="72170" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_makumbusho_merged_nosubprojects_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>2</SourceBand>
+      <SourceProperties RasterXSize="29144" RasterYSize="42598" DataType="Byte" BlockXSize="29144" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="29144" ySize="42598" />
+      <DstRect xOff="215007" yOff="44282" xSize="38133" ySize="55736" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_mburahati_bottomleft.tif</SourceFilename>
+      <SourceBand>2</SourceBand>
+      <SourceProperties RasterXSize="47909" RasterYSize="76216" DataType="Byte" BlockXSize="47909" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="47909" ySize="76216" />
+      <DstRect xOff="205084" yOff="161292" xSize="48439" ySize="77059" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_mburahati_bottomright.tif</SourceFilename>
+      <SourceBand>2</SourceBand>
+      <SourceProperties RasterXSize="95818" RasterYSize="76216" DataType="Byte" BlockXSize="95818" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="95818" ySize="76216" />
+      <DstRect xOff="253524" yOff="161292" xSize="96878" ySize="77059" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_mburahati_topleft.tif</SourceFilename>
+      <SourceBand>2</SourceBand>
+      <SourceProperties RasterXSize="47909" RasterYSize="38108" DataType="Byte" BlockXSize="47909" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="47909" ySize="38108" />
+      <DstRect xOff="205084" yOff="122762" xSize="48439" ySize="38529" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_mburahati_topright.tif</SourceFilename>
+      <SourceBand>2</SourceBand>
+      <SourceProperties RasterXSize="95800" RasterYSize="38108" DataType="Byte" BlockXSize="95800" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="95800" ySize="38108" />
+      <DstRect xOff="253524" yOff="122762" xSize="96859" ySize="38529" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_msasani_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>2</SourceBand>
+      <SourceProperties RasterXSize="50773" RasterYSize="54887" DataType="Byte" BlockXSize="50773" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="50773" ySize="54887" />
+      <DstRect xOff="259004" yOff="9496" xSize="51933" ySize="56141" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-20_dar_river_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>2</SourceBand>
+      <SourceProperties RasterXSize="57131" RasterYSize="57182" DataType="Byte" BlockXSize="57131" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="57131" ySize="57182" />
+      <DstRect xOff="221261" yOff="0" xSize="57131" ySize="57182" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-20_south_ubungo_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>2</SourceBand>
+      <SourceProperties RasterXSize="52969" RasterYSize="59329" DataType="Byte" BlockXSize="52969" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="52969" ySize="59329" />
+      <DstRect xOff="122861" yOff="76198" xSize="62928" ySize="70483" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-05-10_ndugumbi_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>2</SourceBand>
+      <SourceProperties RasterXSize="38846" RasterYSize="34434" DataType="Byte" BlockXSize="38846" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="38846" ySize="34434" />
+      <DstRect xOff="243377" yOff="109457" xSize="40622" ySize="36008" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-05-20_road_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>2</SourceBand>
+      <SourceProperties RasterXSize="294192" RasterYSize="94365" DataType="Byte" BlockXSize="294192" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="294192" ySize="94365" />
+      <DstRect xOff="0" yOff="54997" xSize="387894" ySize="124421" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-05-20_tandale_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>2</SourceBand>
+      <SourceProperties RasterXSize="44870" RasterYSize="42558" DataType="Byte" BlockXSize="44870" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="44870" ySize="42558" />
+      <DstRect xOff="198007" yOff="84232" xSize="55930" ySize="53048" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+  </VRTRasterBand>
+  <VRTRasterBand dataType="Byte" band="3">
+    <NoDataValue>-1.00000000000000E+04</NoDataValue>
+    <ColorInterp>Blue</ColorInterp>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-13_borahatward_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>3</SourceBand>
+      <SourceProperties RasterXSize="50430" RasterYSize="52556" DataType="Byte" BlockXSize="50430" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="50430" ySize="52556" />
+      <DstRect xOff="150608" yOff="108206" xSize="71958" ySize="74991" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-14_hospital_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>3</SourceBand>
+      <SourceProperties RasterXSize="37649" RasterYSize="45033" DataType="Byte" BlockXSize="37649" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="37649" ySize="45033" />
+      <DstRect xOff="267966" yOff="114304" xSize="39629" ySize="47401" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-15_ubungo_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>3</SourceBand>
+      <SourceProperties RasterXSize="47510" RasterYSize="50670" DataType="Byte" BlockXSize="47510" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="47510" ySize="50670" />
+      <DstRect xOff="138451" yOff="30934" xSize="84033" ySize="89622" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_bugurunni_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>3</SourceBand>
+      <SourceProperties RasterXSize="69178" RasterYSize="48475" DataType="Byte" BlockXSize="69178" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="69178" ySize="48475" />
+      <DstRect xOff="189552" yOff="167521" xSize="102993" ySize="72170" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_makumbusho_merged_nosubprojects_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>3</SourceBand>
+      <SourceProperties RasterXSize="29144" RasterYSize="42598" DataType="Byte" BlockXSize="29144" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="29144" ySize="42598" />
+      <DstRect xOff="215007" yOff="44282" xSize="38133" ySize="55736" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_mburahati_bottomleft.tif</SourceFilename>
+      <SourceBand>3</SourceBand>
+      <SourceProperties RasterXSize="47909" RasterYSize="76216" DataType="Byte" BlockXSize="47909" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="47909" ySize="76216" />
+      <DstRect xOff="205084" yOff="161292" xSize="48439" ySize="77059" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_mburahati_bottomright.tif</SourceFilename>
+      <SourceBand>3</SourceBand>
+      <SourceProperties RasterXSize="95818" RasterYSize="76216" DataType="Byte" BlockXSize="95818" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="95818" ySize="76216" />
+      <DstRect xOff="253524" yOff="161292" xSize="96878" ySize="77059" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_mburahati_topleft.tif</SourceFilename>
+      <SourceBand>3</SourceBand>
+      <SourceProperties RasterXSize="47909" RasterYSize="38108" DataType="Byte" BlockXSize="47909" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="47909" ySize="38108" />
+      <DstRect xOff="205084" yOff="122762" xSize="48439" ySize="38529" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_mburahati_topright.tif</SourceFilename>
+      <SourceBand>3</SourceBand>
+      <SourceProperties RasterXSize="95800" RasterYSize="38108" DataType="Byte" BlockXSize="95800" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="95800" ySize="38108" />
+      <DstRect xOff="253524" yOff="122762" xSize="96859" ySize="38529" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_msasani_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>3</SourceBand>
+      <SourceProperties RasterXSize="50773" RasterYSize="54887" DataType="Byte" BlockXSize="50773" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="50773" ySize="54887" />
+      <DstRect xOff="259004" yOff="9496" xSize="51933" ySize="56141" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-20_dar_river_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>3</SourceBand>
+      <SourceProperties RasterXSize="57131" RasterYSize="57182" DataType="Byte" BlockXSize="57131" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="57131" ySize="57182" />
+      <DstRect xOff="221261" yOff="0" xSize="57131" ySize="57182" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-20_south_ubungo_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>3</SourceBand>
+      <SourceProperties RasterXSize="52969" RasterYSize="59329" DataType="Byte" BlockXSize="52969" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="52969" ySize="59329" />
+      <DstRect xOff="122861" yOff="76198" xSize="62928" ySize="70483" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-05-10_ndugumbi_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>3</SourceBand>
+      <SourceProperties RasterXSize="38846" RasterYSize="34434" DataType="Byte" BlockXSize="38846" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="38846" ySize="34434" />
+      <DstRect xOff="243377" yOff="109457" xSize="40622" ySize="36008" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-05-20_road_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>3</SourceBand>
+      <SourceProperties RasterXSize="294192" RasterYSize="94365" DataType="Byte" BlockXSize="294192" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="294192" ySize="94365" />
+      <DstRect xOff="0" yOff="54997" xSize="387894" ySize="124421" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-05-20_tandale_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>3</SourceBand>
+      <SourceProperties RasterXSize="44870" RasterYSize="42558" DataType="Byte" BlockXSize="44870" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="44870" ySize="42558" />
+      <DstRect xOff="198007" yOff="84232" xSize="55930" ySize="53048" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+  </VRTRasterBand>
+  <VRTRasterBand dataType="Byte" band="4">
+    <NoDataValue>-1.00000000000000E+04</NoDataValue>
+    <ColorInterp>Alpha</ColorInterp>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-13_borahatward_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>4</SourceBand>
+      <SourceProperties RasterXSize="50430" RasterYSize="52556" DataType="Byte" BlockXSize="50430" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="50430" ySize="52556" />
+      <DstRect xOff="150608" yOff="108206" xSize="71958" ySize="74991" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-14_hospital_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>4</SourceBand>
+      <SourceProperties RasterXSize="37649" RasterYSize="45033" DataType="Byte" BlockXSize="37649" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="37649" ySize="45033" />
+      <DstRect xOff="267966" yOff="114304" xSize="39629" ySize="47401" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-15_ubungo_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>4</SourceBand>
+      <SourceProperties RasterXSize="47510" RasterYSize="50670" DataType="Byte" BlockXSize="47510" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="47510" ySize="50670" />
+      <DstRect xOff="138451" yOff="30934" xSize="84033" ySize="89622" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_bugurunni_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>4</SourceBand>
+      <SourceProperties RasterXSize="69178" RasterYSize="48475" DataType="Byte" BlockXSize="69178" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="69178" ySize="48475" />
+      <DstRect xOff="189552" yOff="167521" xSize="102993" ySize="72170" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_makumbusho_merged_nosubprojects_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>4</SourceBand>
+      <SourceProperties RasterXSize="29144" RasterYSize="42598" DataType="Byte" BlockXSize="29144" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="29144" ySize="42598" />
+      <DstRect xOff="215007" yOff="44282" xSize="38133" ySize="55736" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_mburahati_bottomleft.tif</SourceFilename>
+      <SourceBand>4</SourceBand>
+      <SourceProperties RasterXSize="47909" RasterYSize="76216" DataType="Byte" BlockXSize="47909" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="47909" ySize="76216" />
+      <DstRect xOff="205084" yOff="161292" xSize="48439" ySize="77059" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_mburahati_bottomright.tif</SourceFilename>
+      <SourceBand>4</SourceBand>
+      <SourceProperties RasterXSize="95818" RasterYSize="76216" DataType="Byte" BlockXSize="95818" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="95818" ySize="76216" />
+      <DstRect xOff="253524" yOff="161292" xSize="96878" ySize="77059" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_mburahati_topleft.tif</SourceFilename>
+      <SourceBand>4</SourceBand>
+      <SourceProperties RasterXSize="47909" RasterYSize="38108" DataType="Byte" BlockXSize="47909" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="47909" ySize="38108" />
+      <DstRect xOff="205084" yOff="122762" xSize="48439" ySize="38529" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_mburahati_topright.tif</SourceFilename>
+      <SourceBand>4</SourceBand>
+      <SourceProperties RasterXSize="95800" RasterYSize="38108" DataType="Byte" BlockXSize="95800" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="95800" ySize="38108" />
+      <DstRect xOff="253524" yOff="122762" xSize="96859" ySize="38529" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-17_msasani_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>4</SourceBand>
+      <SourceProperties RasterXSize="50773" RasterYSize="54887" DataType="Byte" BlockXSize="50773" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="50773" ySize="54887" />
+      <DstRect xOff="259004" yOff="9496" xSize="51933" ySize="56141" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-20_dar_river_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>4</SourceBand>
+      <SourceProperties RasterXSize="57131" RasterYSize="57182" DataType="Byte" BlockXSize="57131" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="57131" ySize="57182" />
+      <DstRect xOff="221261" yOff="0" xSize="57131" ySize="57182" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-04-20_south_ubungo_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>4</SourceBand>
+      <SourceProperties RasterXSize="52969" RasterYSize="59329" DataType="Byte" BlockXSize="52969" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="52969" ySize="59329" />
+      <DstRect xOff="122861" yOff="76198" xSize="62928" ySize="70483" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-05-10_ndugumbi_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>4</SourceBand>
+      <SourceProperties RasterXSize="38846" RasterYSize="34434" DataType="Byte" BlockXSize="38846" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="38846" ySize="34434" />
+      <DstRect xOff="243377" yOff="109457" xSize="40622" ySize="36008" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-05-20_road_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>4</SourceBand>
+      <SourceProperties RasterXSize="294192" RasterYSize="94365" DataType="Byte" BlockXSize="294192" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="294192" ySize="94365" />
+      <DstRect xOff="0" yOff="54997" xSize="387894" ySize="124421" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">data/2015-05-20_tandale_merged_transparent_mosaic_group1.tif</SourceFilename>
+      <SourceBand>4</SourceBand>
+      <SourceProperties RasterXSize="44870" RasterYSize="42558" DataType="Byte" BlockXSize="44870" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="44870" ySize="42558" />
+      <DstRect xOff="198007" yOff="84232" xSize="55930" ySize="53048" />
+      <NODATA>-10000</NODATA>
+    </ComplexSource>
+  </VRTRasterBand>
+</VRTDataset>
