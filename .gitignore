@@ -1,6 +1,5 @@
 .env
 .envrc
-node_modules/
 npm-debug.log
 
 # Emacs

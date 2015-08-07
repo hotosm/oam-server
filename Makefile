@@ -1,17 +1,13 @@
 WORKER_DOCKER_IMAGE = oam/server-worker:latest
 API_DOCKER_IMAGE = oam/server-api:latest
-CLIENT_DOCKER_IMAGE = oam/server-client:latest
 
-all: api worker client
+all: api worker
 
 worker:
 	@docker build -f ./worker/Dockerfile -t $(WORKER_DOCKER_IMAGE) ./worker
 
 api:
 	@docker build -f ./api/Dockerfile -t $(API_DOCKER_IMAGE) ./api
-
-client:
-	@docker build -f ./client/Dockerfile -t $(CLIENT_DOCKER_IMAGE) ./client
 
 
 start-worker: worker
@@ -51,11 +47,8 @@ clean-worker:
 	@docker kill oam-server-worker >> /dev/null 2>&1 || true
 	@docker rm oam-server-worker >> /dev/null 2>&1 || true
 
-clean-client:
-	@docker rm oam-server-client >> /dev/null 2>&1 || true
-	@docker kill oam-server-client >> /dev/null 2>&1 || true
 
-clean: clean-api clean-worker clean-client
+clean: clean-api clean-worker
 
 
-.PHONY: all worker client api start-api start-worker test clean-worker clean-client clean-api clean
+.PHONY: all worker api start-api start-worker test clean-worker clean-api clean
