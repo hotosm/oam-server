@@ -5,12 +5,7 @@ MAINTAINER Humanitarian OpenStreetMap Team
 ENV HOME /app
 ENV PORT 8000
 
-RUN mkdir -p /npm /app
-WORKDIR /npm
-
-COPY package.json /npm/
-
-RUN npm install
+RUN mkdir -p /app
 
 RUN useradd \
   --home-dir /app \
@@ -23,5 +18,6 @@ USER oam
 WORKDIR /app
 
 COPY . /app/
+RUN npm install
 
 ENTRYPOINT ["npm"]

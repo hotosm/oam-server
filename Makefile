@@ -5,7 +5,7 @@ CLIENT_DOCKER_IMAGE = oam/server-client:latest
 all: api worker client
 
 worker:
-	@docker build -f ./tiler-worker/Dockerfile -t $(WORKER_DOCKER_IMAGE) ./tiler-worker
+	@docker build -f ./worker/Dockerfile -t $(WORKER_DOCKER_IMAGE) ./worker
 
 api:
 	@docker build -f ./api/Dockerfile -t $(API_DOCKER_IMAGE) ./api
@@ -30,21 +30,32 @@ start-api: api
 		--volume $(PWD)/api:/app \
 		$(API_DOCKER_IMAGE) start
 
-test: start
+test: start-api
 	@sleep 1
 
 	@docker run \
 		--rm \
 		--name oam-server-api-test \
 		--link oam-server-api:oam-server-api \
-		--volume $(PWD)/tiler-worker:/app \
+		--volume $(PWD)/api:/app \
 		$(API_DOCKER_IMAGE) test
 
 	@docker kill oam-server-api >> /dev/null
 	@docker rm oam-server-api >> /dev/null
 
-clean:
+clean-api:
 	@docker kill oam-server-api >> /dev/null 2>&1 || true
 	@docker rm oam-server-api >> /dev/null 2>&1 || true
 
-.PHONY: clean all start-api start-worker test
+clean-worker:
+	@docker kill oam-server-worker >> /dev/null 2>&1 || true
+	@docker rm oam-server-worker >> /dev/null 2>&1 || true
+
+clean-client:
+	@docker rm oam-server-client >> /dev/null 2>&1 || true
+	@docker kill oam-server-client >> /dev/null 2>&1 || true
+
+clean: clean-api clean-worker clean-client
+
+
+.PHONY: all worker client api start-api start-worker test clean-worker clean-client clean-api clean

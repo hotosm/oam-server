@@ -2,7 +2,7 @@
 
 var request = require("request");
 
-var host = "localhost";
+var host = "oam-server-api";
 if(process.env.DOCKER_HOST) {
   // Get the IP out of the DOCKER HOST if this machine is using docker machine or boot2docker.
   var rx = /(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)/;
