@@ -1,0 +1,21 @@
+#cloud-config
+
+coreos:
+  update:
+    reboot-strategy: off
+  units:
+    - name: oam-tiler-api.service
+      command: start
+      content: |
+        [Unit]
+        Description=OpenAerialMap Tiler API
+        After=docker.service
+
+        [Service]
+        Restart=always
+
+        ExecStartPre=-/usr/bin/docker kill oam-tiler-api
+        ExecStartPre=-/usr/bin/docker rm -f oam-tiler-api
+        ExecStartPre=/usr/bin/docker pull quay.io/hotosm/oam-tiler-api:latest
+        ExecStart=/usr/bin/docker run --name oam-tiler-api -p 80:8000 quay.io/hotosm/oam-tiler-api:latest
+        ExecStop=/usr/bin/docker stop -t 2 oam-tiler-api
