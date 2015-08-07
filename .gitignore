@@ -2,6 +2,8 @@
 .envrc
 npm-debug.log
 
+npm_modules/*
+
 # Emacs
 \#*#
 *~
