@@ -6,3 +6,7 @@ npm-debug.log
 \#*#
 *~
 .#*
+
+# Deployment
+deployment/cfn/*.json
+*.pyc
