@@ -5,10 +5,10 @@ MAINTAINER Humanitarian OpenStreetMap Team
 ENV HOME /app
 ENV PORT 8000
 
-RUN mkdir -p /npm /app
-WORKDIR /npm
+RUN mkdir -p /app /npm_modules/api
+WORKDIR /npm_modules/api
 
-COPY package.json /npm/
+COPY package.json /npm_modules/api/
 
 RUN npm install
 
