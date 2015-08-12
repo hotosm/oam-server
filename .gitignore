@@ -11,3 +11,7 @@ npm_modules/*
 
 # Mac
 .DS_Store
+
+# Deployment
+deployment/cfn/*.json
+*.pyc
