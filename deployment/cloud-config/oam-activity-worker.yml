@@ -1,0 +1,21 @@
+#cloud-config
+
+coreos:
+  update:
+    reboot-strategy: off
+  units:
+    - name: oam-activity-worker.service
+      command: start
+      content: |
+        [Unit]
+        Description=OpenAerialMap SWF Activity Worker
+        After=docker.service
+
+        [Service]
+        Restart=always
+
+        ExecStartPre=-/usr/bin/docker kill oam-activity-worker
+        ExecStartPre=-/usr/bin/docker rm -f oam-activity-worker
+        ExecStartPre=/usr/bin/docker pull quay.io/hotosm/oam-activity-worker:latest
+        ExecStart=/usr/bin/docker run --name oam-activity-worker -p 80:8000 quay.io/hotosm/oam-activity-worker:latest
+        ExecStop=/usr/bin/docker stop -t 2 oam-activity-worker
