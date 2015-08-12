@@ -10,7 +10,8 @@ var decider = require("swfr").decider,
     rimraf = require("rimraf"),
     tmp = require("tmp");
 
-var tileToPngs = require("./lib/tileToPngs");
+var tileToPngs = require("./lib/tile-to-pngs"),
+    uriJoin = require("./lib/utilities").uriJoin;
 
 Promise.promisifyAll(fs);
 Promise.promisifyAll(tmp);
@@ -20,7 +21,8 @@ var CELL_HEIGHT = 256,
     CELL_WIDTH = CELL_HEIGHT;
 
 var worker = decider({
-  sync: true
+  sync: true,
+  activitiesFolder: path.join(__dirname, "lib", "activities")
 }, function(chain, input) {
   return chain
     .then(function() {
@@ -44,8 +46,8 @@ var worker = decider({
         })
         .map(function(file) {
           if(input.reproject) {
-            var inputPath = path.join(input.inputDirectory, file),
-                outputPath = path.join(tmpDirectory, path.parse(file).name + "-reprojected.tif");
+            var inputPath = uriJoin(input.inputDirectory, file),
+                outputPath = uriJoin(tmpDirectory, path.parse(file).name + "-reprojected.tif");
 
             this.status = util.format("Reprojecting %s to 3857 -> ", inputPath, outputPath);
             return this.activity("reproject", "1.0", inputPath, outputPath, {
@@ -54,12 +56,13 @@ var worker = decider({
               nocompression: true
             });
           } else {
-            return path.join(input.inputDirectory, file);
+            return uriJoin(input.inputDirectory, file);
           }
         }, { concurrency: os.cpus().length })
         .then(function(images) {
           var options = {
             workingDir : tmpDirectory,
+            localWorkingDir : tmpDirectory,
             target: input.outputDirectory,
             tileCols : CELL_WIDTH,
             tileRows : CELL_HEIGHT,

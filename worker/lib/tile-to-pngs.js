@@ -9,8 +9,9 @@ var async = require("async"),
     Set = require("collections/set"),
     _ = require('underscore');
 
-var buildHierarchicalVrt = require("./buildHierarchicalVrt"),
-    tileCells = require("./tile-cells");
+var buildHierarchicalVrt = require("./build-hierarchical-vrt"),
+    tileCells = require("./tile-cells"),
+    uriJoin = require("./utilities").uriJoin;
 
 var WEBMERCATOR_WIDTH = 20037508.342789244 * 2,
     WEBMERCATOR_HEIGHT = WEBMERCATOR_WIDTH,
@@ -106,50 +107,29 @@ var tile = function tile(source, zoom, coords, options) {
   return Promise
     .resolve(coords)
     .bind(this)
-    // TODO: Combine resample and translate to PNG into one activity.
-    // .map(function(coord) {
-    //   var target = path.join(options.target, zoom + '', coord[0] + '', coord[1] + ".png"),
-    //       extent = gridCoordToExtent(zoom, coord[0], coord[1]),
-    //       resampleOptions = {
-    //         targetExtent: extent,
-    //         targetResolution: [
-    //           (extent[2] - extent[0]) / options.tileCols,
-    //           (extent[3] - extent[1]) / options.tileRows
-    //         ],
-    //         nodata : 0
-    //       };
-
-    //   console.log("RESAMPLING %s TO %s " + extent, source, target);
-    //   return this.activity("resampleToPng", "1.0", source, target, resampleOptions);
-    // }, {  concurrency: options.concurrency })
     .map(function(coord) {
-      var target = path.join(options.workingDir, zoom + '', coord[0] + '', coord[1] + ".tiff"),
+      var target = uriJoin(options.target, zoom + '', coord[0] + '', coord[1] + ".png"),
           extent = gridCoordToExtent(zoom, coord[0], coord[1]),
           resampleOptions = {
             overwrite : true,
-            nocompression : true,
-            targetExtent : extent,
-            targetResolution : [
+            targetExtent: extent,
+            targetResolution: [
               (extent[2] - extent[0]) / options.tileCols,
               (extent[3] - extent[1]) / options.tileRows
-            ]
+            ],
+            nodata : 0,
+            workingDir : options.localWorkingDir
           };
-      this.log("Resampling %s to %s", source, target);
-      return this.activity("resample", "1.0", source, target, resampleOptions)
-        .bind(this)
-        .then(function(file) {
-          var inputPath = file,
-              outputPath = path.join(options.target, zoom + '', coord[0] + '', coord[1] + ".png");
 
-          this.log("Translating %s to %s", inputPath, outputPath);
-          return this.activity("translate", "1.0", inputPath, outputPath, { outputFormat: "PNG", nodata: 0 })
-            .then(function(file) {
-              return { coord: coord, file: file};
-            });
+      this.log("RESAMPLING %s TO %s", source, target);
+      return this.activity("resampleToPng", "1.0", source, target, resampleOptions)
+        .then(function(file) {
+          return { coord: coord, file: file};
         });
-    }, { concurrency: options.concurrency })
+
+    }, { concurrency: options.concurrency || 0 })
     .then(function(coordsAndFiles) {
-      var vrtPath = path.join(options.workingDir, "vrt", zoom + '');
+      var vrtPath = uriJoin(options.workingDir, "vrt", zoom + '');
       return buildHierarchicalVrt.call(this, coordsAndFiles, vrtPath, { nodata: 0, vrtThreshold : options.vrtThreshold });
     });
 };
@@ -189,18 +169,20 @@ var tileBetweenZooms = function tileBetweenZooms(initialVrt, startZoom, endZoom,
 //     images   -   Images from which to create the mosaiced tile set. The order in which they are listed
 //                  will be the order in which they are prioritized in the mosaic.
 //     options  -   Options for the tiling:
-//         workingDir   - A local or s3 URI that represents the "working directory",
-//                        which is where things like .tiffs and VRTs will be stored as intermediate data.
-//                        This should be cleaned up after the final resulting Promise is completed.
-//         target       - A local or s3 URI where the resulting tile set will be stored. For example,
-//                        if "s3://oam.hotosm.org/tileset1" is given, the tile set would be stored
-//                        such that "s3://oam.hotosm/org/tileset1/{z}/{x}/{y}.png" would be a valid 
-//                        tile service endpoint.
-//         tileCols     - The size in pixels of each tile's width. Defaults to 256.
-//         tileRows     - The size in pixels of each tile's height. Defaults to 256.
-//         concurrency  - Maximum concurrency to set onto BlueBird promises. Default to # of CPUs.
-//         vrtThreshold - Maximum number of files a VRT should hold before it is broken down into a hierarchy of VRTs
-//                        via the buildHierarchicalVrt function.
+//         workingDir      - A local or s3 URI that represents the "working directory",
+//                           which is where things like .tiffs and VRTs will be stored as intermediate data.
+//                           This should be cleaned up after the final resulting Promise is completed.
+//         localWorkingDir - Local temporary directory where activites will place their temprorary files.
+//                           These should be cleaned up automatically by the activities.
+//         target          - A local or s3 URI where the resulting tile set will be stored. For example,
+//                           if "s3://oam.hotosm.org/tileset1" is given, the tile set would be stored
+//                           such that "s3://oam.hotosm/org/tileset1/{z}/{x}/{y}.png" would be a valid 
+//                           tile service endpoint.
+//         tileCols        - The size in pixels of each tile's width. Defaults to 256.
+//         tileRows        - The size in pixels of each tile's height. Defaults to 256.
+//         concurrency     - Maximum concurrency to set onto BlueBird promises. Default to # of CPUs.
+//         vrtThreshold    - Maximum number of files a VRT should hold before it is broken down into a hierarchy of VRTs
+//                           via the buildHierarchicalVrt function.
 var tileToPngs = function tileToPngs(images, options) {
   options.concurrency = options.concurrency | os.cpus().length;
   options.vrtThreshold = options.vrtThreshold | 256;
@@ -279,7 +261,7 @@ var tileToPngs = function tileToPngs(images, options) {
           return Promise
             .bind(this)
             .then(function() {
-              var vrtPath = path.join(options.workingDir, "vrt", util.format("initial-%d.vrt", z1));
+              var vrtPath = uriJoin(options.workingDir, "vrt", util.format("initial-%d.vrt", z1));
               return this.activity("buildVRT", "1.0", initialVrtImages, vrtPath, { nodata: 0 });
             })
             .then(function(vrt) {
