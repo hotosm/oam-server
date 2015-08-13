@@ -67,7 +67,7 @@ bastion_instance_type_param = t.add_parameter(Parameter(
 # VPC Resources
 #
 vpc = t.add_resource(ec2.VPC(
-    'NYCTreesVPC', CidrBlock=VPC_CIDR, EnableDnsSupport=True,
+    'OAMVPC', CidrBlock=VPC_CIDR, EnableDnsSupport=True,
     EnableDnsHostnames=True,
     Tags=Tags(Name='OAMVPC')
 ))
