@@ -24,7 +24,7 @@ import troposphere.autoscaling as asg
 t = Template()
 
 t.add_version('2010-09-09')
-t.add_description('OpenAerialMap SWF activity worker stack')
+t.add_description('OpenAerialMap SWF decider and activity worker stack')
 
 #
 # Parameters
@@ -43,10 +43,23 @@ notification_arn_param = t.add_parameter(Parameter(
     Description='Physical resource ID of an AWS::SNS::Topic for notifications'
 ))
 
-activity_worker_ami_param = t.add_parameter(Parameter(
+coreos_ami_param = t.add_parameter(Parameter(
     'CoreOSAMI', Type='String', Default='ami-85ada4b5',
     Description='CoreOS AMI'
 ))
+
+# decider_instance_profile_param = t.add_parameter(Parameter(
+    # 'DeciderInstanceProfile', Type='String',
+    # Description='Physical resource ID of an AWS::IAM::Role for decider'
+# ))
+
+decider_instance_type_param = t.add_parameter(Parameter(
+    'DeciderInstanceType', Type='String', Default='t2.micro',
+    Description='Decider EC2 instance type',
+    AllowedValues=EC2_INSTANCE_TYPES,
+    ConstraintDescription='must be a valid EC2 instance type.'
+))
+
 
 # activity_worker_instance_profile_param = t.add_parameter(Parameter(
     # 'ActivityWorkerInstanceProfile', Type='String',
@@ -78,6 +91,26 @@ availability_zones_param = t.add_parameter(Parameter(
 #
 # Security Group Resources
 #
+decider_security_group_name = 'sgDecider'
+decider_security_group = t.add_resource(ec2.SecurityGroup(
+    decider_security_group_name,
+    GroupDescription='Enables access to decider servers',
+    VpcId=Ref(vpc_param),
+    SecurityGroupIngress=[
+        ec2.SecurityGroupRule(
+            IpProtocol='tcp', CidrIp=VPC_CIDR, FromPort=p, ToPort=p
+        )
+        for p in [SSH]
+    ],
+    SecurityGroupEgress=[
+        ec2.SecurityGroupRule(
+            IpProtocol='tcp', CidrIp=ALLOW_ALL_CIDR, FromPort=p, ToPort=p
+        )
+        for p in [HTTP, HTTPS]
+    ],
+    Tags=Tags(Name=decider_security_group_name)
+))
+
 activity_worker_security_group_name = 'sgActivityWorker'
 activity_worker_security_group = t.add_resource(ec2.SecurityGroup(
     activity_worker_security_group_name,
@@ -101,9 +134,42 @@ activity_worker_security_group = t.add_resource(ec2.SecurityGroup(
 #
 # Auto Scaling Group Resources
 #
+decider_launch_config = t.add_resource(asg.LaunchConfiguration(
+    'lcDecider',
+    ImageId=Ref(coreos_ami_param),
+    # IamInstanceProfile=Ref(decider_instance_profile_param),
+    InstanceType=Ref(decider_instance_type_param),
+    KeyName=Ref(keyname_param),
+    SecurityGroups=[Ref(decider_security_group)],
+    UserData=Base64(read_file('cloud-config/oam-decider.yml'))
+))
+
+decider_auto_scaling_group = t.add_resource(asg.AutoScalingGroup(
+    'asgDecider',
+    AvailabilityZones=Ref(availability_zones_param),
+    Cooldown=300,
+    DesiredCapacity=1,
+    HealthCheckGracePeriod=600,
+    HealthCheckType='EC2',
+    LaunchConfigurationName=Ref(decider_launch_config),
+    MaxSize=1,
+    MinSize=1,
+    NotificationConfigurations=[asg.NotificationConfigurations(
+        TopicARN=Ref(notification_arn_param),
+        NotificationTypes=[
+            asg.EC2_INSTANCE_LAUNCH,
+            asg.EC2_INSTANCE_LAUNCH_ERROR,
+            asg.EC2_INSTANCE_TERMINATE,
+            asg.EC2_INSTANCE_TERMINATE_ERROR
+        ]
+    )],
+    VPCZoneIdentifier=Ref(private_subnets_param),
+    Tags=[asg.Tag('Name', 'Decider', True)]
+))
+
 activity_worker_launch_config = t.add_resource(asg.LaunchConfiguration(
     'lcActivityWorker',
-    ImageId=Ref(activity_worker_ami_param),
+    ImageId=Ref(coreos_ami_param),
     # IamInstanceProfile=Ref(activity_worker_instance_profile_param),
     InstanceType=Ref(activity_worker_instance_type_param),
     KeyName=Ref(keyname_param),
