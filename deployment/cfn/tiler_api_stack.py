@@ -11,6 +11,7 @@ from troposphere import (
 from utils.cfn import read_file, validate_cloudformation_template
 from utils.constants import (
     ALLOW_ALL_CIDR,
+    EC2_AVAILABILITY_ZONES,
     EC2_INSTANCE_TYPES,
     VPC_CIDR,
 )
@@ -76,6 +77,7 @@ private_subnets_param = t.add_parameter(Parameter(
 
 availability_zones_param = t.add_parameter(Parameter(
     'AvailabilityZones', Type='CommaDelimitedList',
+    Default=','.join(EC2_AVAILABILITY_ZONES),
     Description='A list of availability zones'
 ))
 

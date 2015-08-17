@@ -1,6 +1,6 @@
 EC2_AVAILABILITY_ZONES = [
-    'a',
-    'b'
+    'us-west-2a',
+    'us-west-2b'
 ]
 EC2_INSTANCE_TYPES = [
     't2.micro',

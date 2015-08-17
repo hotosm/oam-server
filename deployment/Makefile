@@ -7,6 +7,6 @@ clean:
 	rm -f cfn/*.json
 
 cfn/%.json: cfn/%.py
-	@AWS_PROFILE="hotosm-oam" python $<
+	python $<
 
 .PHONY: all clean

@@ -67,7 +67,7 @@ bastion_instance_type_param = t.add_parameter(Parameter(
 # VPC Resources
 #
 vpc = t.add_resource(ec2.VPC(
-    'NYCTreesVPC', CidrBlock=VPC_CIDR, EnableDnsSupport=True,
+    'OAMVPC', CidrBlock=VPC_CIDR, EnableDnsSupport=True,
     EnableDnsHostnames=True,
     Tags=Tags(Name='OAMVPC')
 ))
@@ -139,10 +139,10 @@ public_subnets = []
 private_subnets = []
 
 for index, availability_zone in enumerate(EC2_AVAILABILITY_ZONES):
-    public_subnet_name = 'USWest2%sPublicSubnet' % availability_zone.upper()
+    public_subnet_name = '%sPublicSubnet' % availability_zone.title().replace('-', '')  # NOQA
     public_subnet = t.add_resource(ec2.Subnet(
         public_subnet_name, VpcId=Ref(vpc), CidrBlock=cidr_generator.next(),
-        AvailabilityZone='us-west-2%s' % availability_zone,
+        AvailabilityZone=availability_zone,
         Tags=Tags(Name=public_subnet_name)
     ))
 
@@ -171,7 +171,7 @@ for index, availability_zone in enumerate(EC2_AVAILABILITY_ZONES):
         ))
 
     nat_device = t.add_resource(ec2.Instance(
-        'USWest2%sNATDevice' % availability_zone.upper(),
+        '%sNATDevice' % availability_zone.title().replace('-', ''),
         InstanceType=Ref(nat_instance_type_param),
         KeyName=Ref(keyname_param), SourceDestCheck=False,
         ImageId=Ref(nat_ami_param),
@@ -188,21 +188,21 @@ for index, availability_zone in enumerate(EC2_AVAILABILITY_ZONES):
         Tags=Tags(Name='NATDevice')
     ))
 
-    private_subnet_name = 'USWest2%sPrivateSubnet' % availability_zone.upper()
+    private_subnet_name = '%sPrivateSubnet' % availability_zone.title().replace('-', '')  # NOQA
     private_subnet = t.add_resource(ec2.Subnet(
         private_subnet_name, VpcId=Ref(vpc), CidrBlock=cidr_generator.next(),
-        AvailabilityZone='us-west-2%s' % availability_zone,
+        AvailabilityZone=availability_zone,
         Tags=Tags(Name=private_subnet_name)
     ))
 
-    private_route_table_name = 'USWest2%sPrivateRouteTable' % availability_zone.upper()  # NOQA
+    private_route_table_name = '%sPrivateRouteTable' % availability_zone.title().replace('-', '')  # NOQA
     private_route_table = t.add_resource(ec2.RouteTable(
         private_route_table_name, VpcId=Ref(vpc),
         Tags=Tags(Name=private_route_table_name)
     ))
 
     private_route = t.add_resource(ec2.Route(
-        'USWest2%sPrivateRoute' % availability_zone.upper(),
+        '%sPrivateRoute' % availability_zone.title().replace('-', ''),
         RouteTableId=Ref(private_route_table),
         DestinationCidrBlock=ALLOW_ALL_CIDR, InstanceId=Ref(nat_device)
     ))
