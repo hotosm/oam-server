@@ -113,11 +113,7 @@ module.exports = function resampleToPng(inputPath, outputUri, options, callback)
           timeout: 10 * 60e3 // 10 minutes
         }, function(err) {
           fs.unlink(resampleOutputPath, function() {});
-          if(err) {
-            return done(err);
-          }
-
-          return done();
+          return done.apply(null, arguments);
         });
       });
     });

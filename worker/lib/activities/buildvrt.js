@@ -48,7 +48,7 @@ module.exports = function buildVRT(files, outputUri, options, callback) {
 
         return shell("gdalbuildvrt", args, {}, function(err) {
           fs.unlink(fileList, function() {});
-          return done(err);
+          return done.apply(null, arguments);
         });
       });
         

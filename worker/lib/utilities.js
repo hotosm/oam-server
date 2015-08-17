@@ -23,13 +23,13 @@ module.exports.vsiCurlify = function vsiCurlify(uri) {
 module.exports.uriJoin = function uriJoin() {
   if(arguments.length == 0) { return null; }
   if(arguments.length == 1) { return arguments[0]; }
-  var head = arguments[0];
-  var tail = _.rest(arguments);
+  var head = arguments[0] + '';
+  var tail = _.map(_.rest(arguments), function(p) { return p + ''; });
   var urlParsed = url.parse(head);
-  var joined = path.join.apply(null, [urlParsed.path].concat(tail));
   if(urlParsed.protocol) {
-    return util.format("%s/%s", urlParsed.protocol, joined);
+    var joined = path.join.apply(null, [urlParsed.hostname, urlParsed.path].concat(tail));
+    return util.format("%s//%s", urlParsed.protocol, joined);
   } else {
-    return joined;
+    return path.join.apply(null, [urlParsed.path].concat(tail));
   }
 };

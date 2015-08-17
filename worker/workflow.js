@@ -22,7 +22,7 @@ rimraf = Promise.promisify(rimraf);
 var CELL_HEIGHT = 256,
     CELL_WIDTH = CELL_HEIGHT;
 
-var TARGET_BUCKET = "tiles.hotosm.org";
+var TARGET_BUCKET = "oam-tiles";
 
 // Workflow input:
 // {
@@ -32,7 +32,7 @@ var TARGET_BUCKET = "tiles.hotosm.org";
 // }
 
 var worker = decider({
-  sync: true,
+//  sync: true,
   domain: env.require("OAM_SWF_DOMAIN"),
   taskList: env.require("OAM_SWF_DECIDER_TASKLIST"),
   activitiesFolder: path.join(__dirname, "lib", "activities")
@@ -43,7 +43,7 @@ var worker = decider({
   assert.ok(input.workingBucket, "Input requires 'workingBucket'.");
 
   var workingFolder = util.format("s3://%s/%s", input.workingBucket, input.id);
-
+  console.log(workingFolder);
   return chain
     .then(function() {
       // Reverse the images, since in VRT's, the last images win.
@@ -78,11 +78,11 @@ var worker = decider({
     });
 });
 
-worker.start({
-  id: "oam-tiler-test",
-  images: ["s3://oin-astrodigital/LC81410412014277LGN00_bands_432.TIF"],
-  workingBucket: "workspace-oam-hotosm-org"
-});
+// worker.start({
+//   id: "oam-tiler-test",
+//   images: ["s3://oin-astrodigital/LC81410412014277LGN00_bands_432.TIF"],
+//   workingBucket: "workspace-oam-hotosm-org"
+// });
 
 process.on("SIGTERM", function() {
   worker.cancel();
