@@ -1,0 +1,27 @@
+{
+  "name": "oam-tiler-api",
+  "version": "0.1.0",
+  "description": "OAM Tiler API",
+  "main": "server.js",
+  "author": "Rob Emanuele <rdemanuele@gmail.com>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hotosm/oam-server.git"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.13.1",
+    "express": "^4.13.0",
+    "morgan": "^1.6.0",
+    "request": "^2.58.0"
+  },
+  "bugs": {
+    "url": "https://github.com/hotosm/oam-server/issues"
+  },
+  "homepage": "https://github.com/hotosm/oam-server",
+  "devDependencies": {}
+}

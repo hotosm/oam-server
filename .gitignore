@@ -2,10 +2,15 @@
 .envrc
 npm-debug.log
 
+npm_modules/*
+
 # Emacs
 \#*#
 *~
 .#*
+
+# Mac
+.DS_Store
 
 # Deployment
 deployment/cfn/*.json

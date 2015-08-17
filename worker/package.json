@@ -1,23 +1,39 @@
 {
-  "name": "oam-server",
+  "name": "oam-tiler-worker",
   "version": "0.1.0",
-  "description": "OAM Server endpoints",
+  "description": "OAM Tiler Worker",
+  "main": "server.js",
   "author": "Rob Emanuele <rdemanuele@gmail.com>",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/hotosm/oam-server.git"
   },
-  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "test": "node test.js"
   },
   "dependencies": {
+    "async": "^1.3.0",
+    "bluebird": "^2.9.13",
     "body-parser": "^1.13.1",
+    "clone": "^1.0.2",
+    "collections": "^1.2.3",
+    "debug": "^2.2.0",
     "express": "^4.13.0",
+    "holdtime": "^0.1.1",
+    "mkdirp": "^0.5.1",
     "morgan": "^1.6.0",
-    "request": "^2.58.0"
+    "range": "0.0.3",
+    "request": "^2.58.0",
+    "require-env": "0.0.4",
+    "rimraf": "^2.4.1",
+    "sphericalmercator": "^1.0.3",
+    "tessera": "^0.5.3",
+    "tilelive-file": "0.0.3",
+    "tmp": "0.0.26",
+    "underscore": "^1.8.3",
+    "url": "^0.10.3"
   },
   "bugs": {
     "url": "https://github.com/hotosm/oam-server/issues"
